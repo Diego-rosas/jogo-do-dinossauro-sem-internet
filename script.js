@@ -1,6 +1,7 @@
 const dino = document.querySelector('.dino')
 const background = document.querySelector('.background');
 let isJumping = false;
+let position = 0;
 
 //captura o evento das teclas "espaço" e "seta pra cima"
 function handlekeyUp(event){
@@ -13,7 +14,7 @@ function handlekeyUp(event){
 
 //cria o pulo do dino
 function jump(){
-   let position = 0;
+   
 
     isJumping = true;
 
@@ -41,21 +42,26 @@ function jump(){
 //cria o cactus
 function createCactus(){
     const cactus = document.createElement('div'); //cria uma div no html e atribui a cariavel cactus
-    let cactusPosition = 1000;
-    let randomTime = Math.random() * 6000;
+    let cactusPosition = 1150;
+    let randomTime = Math.random() * 6000; 
 
     cactus.classList.add('cactus'); // cria uma class para a div cactus 
     background.appendChild(cactus);
-    cactus.style.left = 1000 + 'px';
+    cactus.style.left = 1150 + 'px';
 
     let leftInterval = setInterval(() => {
        if(cactusPosition < -60) {
            clearInterval(leftInterval);
-           background.removeChild(Cactus);
+           background.removeChild(cactus);
+       } else if(cactusPosition > 0 && cactusPosition < 60 && position < 60){
+            //  Game over
+            clearInterval(leftInterval);
+            document.body.innerHTML = '<h1 class="game-over">Fim de Jogo!</h1>'    
        } else {
             cactusPosition -= 10;
             cactus.style.left = cactusPosition + 'px'
        }    
+
     },20);
 
     setTimeout(createCactus, randomTime);
