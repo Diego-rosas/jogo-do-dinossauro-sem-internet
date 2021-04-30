@@ -42,12 +42,25 @@ function jump(){
 function createCactus(){
     const cactus = document.createElement('div'); //cria uma div no html e atribui a cariavel cactus
     let cactusPosition = 1000;
+    let randomTime = Math.random() * 6000;
 
     cactus.classList.add('cactus'); // cria uma class para a div cactus 
-    cactus.style.left = 1000 + 'px';
     background.appendChild(cactus);
+    cactus.style.left = 1000 + 'px';
+
+    let leftInterval = setInterval(() => {
+       if(cactusPosition < -60) {
+           clearInterval(leftInterval);
+           background.removeChild(Cactus);
+       } else {
+            cactusPosition -= 10;
+            cactus.style.left = cactusPosition + 'px'
+       }    
+    },20);
+
+    setTimeout(createCactus, randomTime);
 }
 
 createCactus();
 //ouve o evento do apertar soltar as teclas        
-document.addEventListener('keyup', handlekeyUp)
+document.addEventListener('keyup', handlekeyUp);
