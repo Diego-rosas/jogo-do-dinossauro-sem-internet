@@ -1,7 +1,9 @@
 const dino = document.querySelector('.dino')
 const background = document.querySelector('.background');
+const botao = document.querySelector('#botao').value;
 let isJumping = false;
 let position = 0;
+
 
 //captura o evento das teclas "espaço" e "seta pra cima"
 function handlekeyUp(event){
@@ -11,6 +13,16 @@ function handlekeyUp(event){
         }
     }
 }
+
+/*
+function puloBotao(){  handle
+    if(botao == 32){
+        if(!isJumping){
+            jump();
+        }
+    }
+    
+}*/
 
 //cria o pulo do dino
 function jump(){
@@ -30,13 +42,13 @@ function jump(){
                     position -= 20;
                     dino.style.bottom = position + 'px';
                 }    
-            },20)  
+            },15)  
         }   else { 
 //  subindo    
             position += 20;
             dino.style.bottom = position + 'px';
         }
-    },20);
+    },15);
 }
 
 //cria o cactus
@@ -56,7 +68,7 @@ function createCactus(){
        } else if(cactusPosition > 0 && cactusPosition < 60 && position < 60){
             //  Game over
             clearInterval(leftInterval);
-            document.body.innerHTML = '<h1 class="game-over">Fim de Jogo!</h1>'    
+           document.body.innerHTML = '<h1 class="game-over">Fim de Jogo!</h1>'    
        } else {
             cactusPosition -= 10;
             cactus.style.left = cactusPosition + 'px'
